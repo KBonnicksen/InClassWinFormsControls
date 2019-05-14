@@ -45,6 +45,8 @@ namespace InClassWinFormsControls
         {
             //fired everytime the index is changed
 
+            //this if statement allows you to cast the selected item to an int 
+            //because it handles the only string that you have to deal with
             if(cboExpYear.SelectedIndex == 0)
             {
                 //Like a break that takes you out of the entire method
@@ -52,6 +54,45 @@ namespace InClassWinFormsControls
             }
             int chosenYear = (int)cboExpYear.SelectedItem;
             MessageBox.Show($"You chose {chosenYear}");
+        }
+
+        private void btnClearYears_Click(object sender, EventArgs e)
+        {
+            int totalItems = cboExpYear.Items.Count;
+            MessageBox.Show($"Items before clear {totalItems}");
+
+            cboExpYear.Items.Clear();
+        }
+
+        private void radFaculty_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayPersonChoice(radFaculty);
+
+        }
+
+
+        private void radStaff_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayPersonChoice(radStaff);
+        }
+
+        private void radStudent_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayPersonChoice(radStudent);
+        }
+
+        /// <summary>
+        /// Displays a messagebox telling the user which radio button
+        /// option they have chosen
+        /// </summary>
+        /// <param name="radBtn">The radio button selected by the user</param>
+        private void DisplayPersonChoice(RadioButton radBtn)
+        {
+            if (radBtn.Checked)
+            {
+                string choice = radBtn.Text;
+                MessageBox.Show($"You chose {choice}!");
+            }
         }
     }
 }
